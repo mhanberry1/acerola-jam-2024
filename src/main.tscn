@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3hmgc7uslkqq"]
+
+[ext_resource type="PackedScene" uid="uid://lg0acywvsql2" path="res://components/player.tscn" id="1_vi0c5"]
+[ext_resource type="Texture2D" uid="uid://cpg8ypvesyg3d" path="res://sprites/tilesheet.png" id="2_71dga"]
+[ext_resource type="Script" path="res://scripts/rewinder.gd" id="3_hmyin"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_75vqh"]
+texture = ExtResource("2_71dga")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 0, -16, 0)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 0, -16, 0, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, 16, -16, 16, 16, 0, 16)
+
+[sub_resource type="TileSet" id="TileSet_4xetv"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_75vqh")
+
+[node name="Main" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_vi0c5")]
+position = Vector2(1003, 216)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_4xetv")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 655360, 0, 0, 720896, 0, 0, 786432, 0, 0, 851968, 0, 0, 917504, 0, 0, 983040, 0, 0, 1048576, 0, 0, 1114112, 0, 0, 1179648, 0, 0, 1245184, 0, 0, 1310720, 0, 0, 35, 0, 0, 65571, 0, 0, 131107, 0, 0, 196643, 0, 0, 262179, 0, 0, 327715, 0, 0, 393251, 0, 0, 458787, 0, 0, 524323, 0, 0, 589859, 0, 0, 655395, 0, 0, 720931, 0, 0, 786467, 0, 0, 852003, 0, 0, 917539, 0, 0, 983075, 0, 0, 1048611, 0, 0, 1114147, 0, 0, 1179683, 0, 0, 1245219, 0, 0, 1310755, 0, 0, 1245185, 0, 0, 1310721, 0, 0, 1245186, 0, 0, 1310722, 0, 0, 1245187, 0, 0, 1310723, 0, 0, 1245188, 0, 0, 1310724, 0, 0, 1245189, 0, 0, 1310725, 0, 0, 1245190, 0, 0, 1310726, 0, 0, 1245191, 0, 0, 1310727, 0, 0, 1245192, 0, 0, 1310728, 0, 0, 1245193, 0, 0, 1310729, 0, 0, 1245194, 0, 0, 1310730, 0, 0, 1245195, 0, 0, 1310731, 0, 0, 1245196, 0, 0, 1310732, 0, 0, 1245197, 0, 0, 1310733, 0, 0, 1245198, 0, 0, 1310734, 0, 0, 1245199, 0, 0, 1310735, 0, 0, 1245200, 0, 0, 1310736, 0, 0, 1245201, 0, 0, 1310737, 0, 0, 1245202, 0, 0, 1310738, 0, 0, 1245203, 0, 0, 1310739, 0, 0, 1245204, 0, 0, 1310740, 0, 0, 1245205, 0, 0, 1310741, 0, 0, 1245206, 0, 0, 1310742, 0, 0, 1245207, 0, 0, 1310743, 0, 0, 1245208, 0, 0, 1310744, 0, 0, 1245209, 0, 0, 1310745, 0, 0, 1245210, 0, 0, 1310746, 0, 0, 1245211, 0, 0, 1310747, 0, 0, 1245212, 0, 0, 1310748, 0, 0, 1245213, 0, 0, 1310749, 0, 0, 1245214, 0, 0, 1310750, 0, 0, 1245215, 0, 0, 1310751, 0, 0, 1245216, 0, 0, 1310752, 0, 0, 1245217, 0, 0, 1310753, 0, 0, 1245218, 0, 0, 1310754, 0, 0, 1179649, 0, 1, 1179682, 0, 2, 720910, 0, 2, 786446, 0, 0, 851982, 0, 0, 917518, 0, 0, 983054, 0, 0, 1048590, 0, 0, 1114126, 0, 0, 1179662, 0, 0, 720911, 0, 0, 786447, 0, 0, 851983, 0, 0, 917519, 0, 0, 983055, 0, 0, 1048591, 0, 0, 1114127, 0, 0, 1179663, 0, 0, 720912, 0, 0, 786448, 0, 0, 851984, 0, 0, 917520, 0, 0, 983056, 0, 0, 1048592, 0, 0, 1114128, 0, 0, 1179664, 0, 0, 720913, 0, 0, 786449, 0, 0, 851985, 0, 0, 917521, 0, 0, 983057, 0, 0, 1048593, 0, 0, 1114129, 0, 0, 1179665, 0, 0, 720914, 0, 0, 786450, 0, 0, 851986, 0, 0, 917522, 0, 0, 983058, 0, 0, 1048594, 0, 0, 1114130, 0, 0, 1179666, 0, 0, 720915, 0, 0, 786451, 0, 0, 851987, 0, 0, 917523, 0, 0, 983059, 0, 0, 1048595, 0, 0, 1114131, 0, 0, 1179667, 0, 0, 720916, 0, 1, 786452, 0, 0, 851988, 0, 0, 917524, 0, 0, 983060, 0, 0, 1048596, 0, 0, 1114132, 0, 0, 1179668, 0, 0, 1179669, 0, 1, 1179661, 0, 2, 720918, 65536, 0, 720919, 65536, 0, 720920, 65536, 0, 720906, 65536, 0, 720907, 65536, 0, 720908, 65536, 0, 917532, 65536, 0, 917533, 65536, 0, 917534, 65536, 0, 917509, 65536, 0, 917510, 65536, 0, 917511, 65536, 0)
+
+[node name="Rewinder" type="Node" parent="."]
+script = ExtResource("3_hmyin")
