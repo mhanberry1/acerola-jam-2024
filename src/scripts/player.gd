@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var jump_force := 400
 @export var max_jump_duration := 0.1
 
+@onready var _animated_sprite = $AnimatedSprite2D
+
 var _duplicate = preload('res://components/duplicate.tscn')
 var _history_record : Rewinder.Record
 var _jump_duration := 0.0
@@ -36,6 +38,18 @@ func _handle_rewind():
 			)
 		)
 
+func _play_animations():
+	if Input.is_action_pressed("jump"):
+		_animated_sprite.play("jump")
+	elif Input.is_action_pressed("right"):
+		_animated_sprite.flip_h = false
+		_animated_sprite.play("walk")
+	elif Input.is_action_pressed("left"):
+		_animated_sprite.flip_h = true
+		_animated_sprite.play("walk")
+	else:
+		_animated_sprite.stop()
+
 func _ready():
 	_history_record = Rewinder.track(self)
 
@@ -43,5 +57,6 @@ func _physics_process(delta: float):
 	_handle_gravity(delta)
 	_handle_movement(delta)
 	_handle_rewind()
+	_play_animations()
 
 	move_and_slide()
