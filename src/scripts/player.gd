@@ -25,6 +25,7 @@ func _handle_movement(delta: float):
 	if Input.is_action_pressed("jump") and _jump_duration < max_jump_duration:
 		velocity.y = -jump_force
 		_jump_duration += delta
+	if Input.is_action_just_released("jump"): _jump_duration = max_jump_duration
 
 func _handle_rewind():
 	if Input.is_action_just_pressed("rewind"):
