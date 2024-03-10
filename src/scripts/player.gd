@@ -17,15 +17,14 @@ func _handle_gravity(delta: float):
 func _handle_movement(delta: float):
 	velocity.x = 0
 	
-	if is_on_floor(): _jump_duration = 0
+	if not Input.is_action_pressed("jump") and is_on_floor():
+		_jump_duration = 0
 
 	if Input.is_action_pressed("left"): velocity.x = -speed
 	if Input.is_action_pressed("right"): velocity.x = speed
 	if Input.is_action_pressed("jump") and _jump_duration < max_jump_duration:
 		velocity.y = -jump_force
 		_jump_duration += delta
-	else:
-		_jump_duration = max_jump_duration
 
 func _handle_rewind():
 	if Input.is_action_just_pressed("rewind"):
@@ -38,8 +37,18 @@ func _handle_rewind():
 			)
 		)
 
+func _handle_shoot():
+	if Input.is_action_just_pressed("shoot"):
+		var bullet : StaticBody2D = $bullet.duplicate()
+
+		if _animated_sprite.flip_h: bullet.flip()
+		
+		add_child(bullet)
+		bullet.show()
+		bullet.shoot()
+
 func _play_animations():
-	if Input.is_action_pressed("jump"):
+	if not is_on_floor():
 		_animated_sprite.play("jump")
 	elif Input.is_action_pressed("right"):
 		_animated_sprite.flip_h = false
@@ -48,15 +57,19 @@ func _play_animations():
 		_animated_sprite.flip_h = true
 		_animated_sprite.play("walk")
 	else:
-		_animated_sprite.stop()
+		_animated_sprite.play("stand")
 
 func _ready():
 	_history_record = Rewinder.track(self)
 
 func _physics_process(delta: float):
+	_handle_rewind()
+
+	if Rewinder.rewinding: return
+
 	_handle_gravity(delta)
 	_handle_movement(delta)
-	_handle_rewind()
+	_handle_shoot()
 	_play_animations()
 
 	move_and_slide()

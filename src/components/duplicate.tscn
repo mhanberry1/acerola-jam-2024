@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://scripts/duplicate.gd" id="1_0n6h3"]
 [ext_resource type="SpriteFrames" uid="uid://d0qjtu6u2ra3q" path="res://resources/spaceman.tres" id="2_6mwhl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gox3q"]
-size = Vector2(64, 128)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q273t"]
+radius = 28.0
+height = 128.0
 
-[node name="duplicate" type="StaticBody2D"]
+[node name="duplicate" type="AnimatableBody2D"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_0n6h3")
 
@@ -18,5 +19,5 @@ animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-16, 0)
-shape = SubResource("RectangleShape2D_gox3q")
+shape = SubResource("CapsuleShape2D_q273t")
 one_way_collision = true

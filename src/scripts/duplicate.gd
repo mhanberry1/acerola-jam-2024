@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends AnimatableBody2D
 
 class_name Duplicate
 
@@ -24,12 +24,12 @@ func _ready():
 
 func _process(delta: float):
 	if positions.is_empty(): return evaporate(delta)
-	
+
 	_time_to_update -= delta
 
 	if _target:
 		position += (_target - position) * (delta / Rewinder.UPDATE_INTERVAL)
-	
+
 	if _time_to_update > 0: return
 
 	_target = positions.pop_front()

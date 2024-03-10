@@ -1,14 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://lg0acywvsql2"]
+[gd_scene load_steps=7 format=3 uid="uid://lg0acywvsql2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_alefx"]
 [ext_resource type="SpriteFrames" uid="uid://d0qjtu6u2ra3q" path="res://resources/spaceman.tres" id="2_ulld1"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="3_0mpjm"]
+[ext_resource type="Texture2D" uid="uid://bxmvdb0qdv13x" path="res://sprites/weapons/bullet.png" id="3_xdnhh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e832h"]
-size = Vector2(64, 127)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1sys5"]
+radius = 28.0
+height = 128.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgn8i"]
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(1, 0)
 scale = Vector2(0.25, 0.25)
+floor_constant_speed = true
 script = ExtResource("1_alefx")
 speed = null
 gravity = null
@@ -23,8 +29,25 @@ animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-16, 0)
-shape = SubResource("RectangleShape2D_e832h")
+shape = SubResource("CapsuleShape2D_1sys5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -30)
 zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="bullet" type="StaticBody2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(47, -3)
+script = ExtResource("3_0mpjm")
+speed = null
+lifetime = null
+
+[node name="Sprite2D" type="Sprite2D" parent="bullet"]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("3_xdnhh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet"]
+shape = SubResource("RectangleShape2D_qgn8i")

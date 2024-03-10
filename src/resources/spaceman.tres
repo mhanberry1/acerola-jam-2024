@@ -1,34 +1,35 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://d0qjtu6u2ra3q"]
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://d0qjtu6u2ra3q"]
 
-[ext_resource type="Texture2D" uid="uid://bewlm6ga5b7uw" path="res://sprites/spaceman/hover.png" id="1_gm5aa"]
-[ext_resource type="Texture2D" uid="uid://d3751q4au48vw" path="res://sprites/spaceman/jump.png" id="2_qk66o"]
-[ext_resource type="Texture2D" uid="uid://dfs5boagxsfii" path="res://sprites/spaceman/walk.png" id="3_auf3a"]
+[ext_resource type="Texture2D" uid="uid://bewlm6ga5b7uw" path="res://sprites/spaceman/hover.png" id="1_a5n76"]
+[ext_resource type="Texture2D" uid="uid://d3751q4au48vw" path="res://sprites/spaceman/jump.png" id="2_ryp4u"]
+[ext_resource type="Texture2D" uid="uid://clq2irtuo8dtq" path="res://sprites/spaceman/stand.png" id="3_c03ic"]
+[ext_resource type="Texture2D" uid="uid://dfs5boagxsfii" path="res://sprites/spaceman/walk.png" id="4_501cr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iortl"]
-atlas = ExtResource("3_auf3a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3mb1"]
+atlas = ExtResource("4_501cr")
 region = Rect2(0, 0, 20, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_866ga"]
-atlas = ExtResource("3_auf3a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_diamd"]
+atlas = ExtResource("4_501cr")
 region = Rect2(20, 0, 20, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nahaj"]
-atlas = ExtResource("3_auf3a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_74kn7"]
+atlas = ExtResource("4_501cr")
 region = Rect2(40, 0, 20, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qh5nh"]
-atlas = ExtResource("3_auf3a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiuue"]
+atlas = ExtResource("4_501cr")
 region = Rect2(60, 0, 20, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0dcpg"]
-atlas = ExtResource("3_auf3a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyaeu"]
+atlas = ExtResource("4_501cr")
 region = Rect2(80, 0, 20, 23)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_gm5aa")
+"texture": ExtResource("1_a5n76")
 }],
 "loop": true,
 "name": &"hover",
@@ -36,7 +37,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_qk66o")
+"texture": ExtResource("2_ryp4u")
 }],
 "loop": true,
 "name": &"jump",
@@ -44,19 +45,27 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iortl")
+"texture": ExtResource("3_c03ic")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3mb1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_866ga")
+"texture": SubResource("AtlasTexture_diamd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nahaj")
+"texture": SubResource("AtlasTexture_74kn7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qh5nh")
+"texture": SubResource("AtlasTexture_iiuue")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0dcpg")
+"texture": SubResource("AtlasTexture_cyaeu")
 }],
 "loop": true,
 "name": &"walk",
