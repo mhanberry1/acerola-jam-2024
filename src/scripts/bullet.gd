@@ -14,6 +14,11 @@ func flip():
 func shoot():
 	_shooting = true
 
+func _handle_collision():
+	var collision := move_and_collide(Vector2())
+
+	if collision: queue_free()
+
 func _ready():
 	_position_y = global_position.y
 
@@ -23,6 +28,8 @@ func _process(delta):
 	global_position.x += speed
 	global_position.y = _position_y
 	lifetime -= delta
+
+	_handle_collision()
 
 	if lifetime > 0: return
 
