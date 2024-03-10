@@ -9,7 +9,7 @@ var _position_y : float
 func flip():
 	$Sprite2D.flip_h = true
 	speed *= -1
-	position.x -= 101
+	position.x *= -1
 
 func shoot():
 	_shooting = true

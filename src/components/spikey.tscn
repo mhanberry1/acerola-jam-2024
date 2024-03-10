@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnnfbm6m7332w"]
+
+[ext_resource type="Texture2D" uid="uid://bbft8yjp15qro" path="res://sprites/enemies/spikey.png" id="1_b21gd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6a6x4"]
+size = Vector2(20, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0grv"]
+atlas = ExtResource("1_b21gd")
+region = Rect2(0, 0, 19, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e75p2"]
+atlas = ExtResource("1_b21gd")
+region = Rect2(19, 0, 19, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_db1mp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0grv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e75p2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Spikey" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6a6x4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_db1mp")
+autoplay = "default"
+frame_progress = 0.0195144

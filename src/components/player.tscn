@@ -16,19 +16,15 @@ position = Vector2(1, 0)
 scale = Vector2(0.25, 0.25)
 floor_constant_speed = true
 script = ExtResource("1_alefx")
-speed = null
-gravity = null
-jump_force = null
-max_jump_duration = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(16, 0)
 scale = Vector2(5.5, 5.5)
 sprite_frames = ExtResource("2_ulld1")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-16, 0)
 shape = SubResource("CapsuleShape2D_1sys5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -41,8 +37,6 @@ visible = false
 z_index = -1
 position = Vector2(47, -3)
 script = ExtResource("3_0mpjm")
-speed = null
-lifetime = null
 
 [node name="Sprite2D" type="Sprite2D" parent="bullet"]
 texture_filter = 1

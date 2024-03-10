@@ -52,9 +52,15 @@ func _play_animations():
 	if not is_on_floor():
 		_animated_sprite.play("jump")
 	elif Input.is_action_pressed("right"):
+		if _animated_sprite.flip_h:
+			_animated_sprite.position.x *= -1
+
 		_animated_sprite.flip_h = false
 		_animated_sprite.play("walk")
 	elif Input.is_action_pressed("left"):
+		if not _animated_sprite.flip_h:
+			_animated_sprite.position.x *= -1
+
 		_animated_sprite.flip_h = true
 		_animated_sprite.play("walk")
 	else:

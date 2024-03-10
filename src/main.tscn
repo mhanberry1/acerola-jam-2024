@@ -10,7 +10,9 @@
 [node name="player" parent="." instance=ExtResource("1_vi0c5")]
 position = Vector2(102, 38)
 speed = 100
+gravity = 1000
 jump_force = 200
+max_jump_duration = 0.1
 
 [node name="Rewinder" type="Node" parent="."]
 script = ExtResource("3_hmyin")
