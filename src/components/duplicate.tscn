@@ -11,7 +11,7 @@ height = 128.0
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_0n6h3")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(5.5, 5.5)
 sprite_frames = ExtResource("2_6mwhl")
@@ -21,3 +21,6 @@ animation = &"walk"
 position = Vector2(-16, 0)
 shape = SubResource("CapsuleShape2D_q273t")
 one_way_collision = true
+
+[node name="bulletspawn" type="Node2D" parent="."]
+position = Vector2(52, -4)

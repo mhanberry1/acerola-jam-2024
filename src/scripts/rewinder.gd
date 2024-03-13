@@ -11,17 +11,32 @@ static var _history : Array[Record] = []
 static var _time_to_update := 0.0
 static var _time_to_rewind := 0.0
 
-class Record:
-	var node_ref: Node2D
-	var positions: Array[Vector2]
-	var popped_positions: Array[Vector2]
-	
-	func _init(node: Node2D):
-		self.node_ref = node
-		self.positions = [node.position]
-		self.popped_positions = []
+class State:
+	var transform : Transform2D
+	var action : String
+	var animation : String
 
-static func track(node: Node2D) -> Record:
+	func _init(node : Node2D):
+		self.transform = node.transform
+		self.action = node.action
+		self.animation = node.animation
+
+		node.action = ""
+	
+	func _to_string():
+		return '%s %s' % [transform, action]
+
+class Record:
+	var node_ref : Node2D
+	var states : Array[State]
+	var popped_states : Array[State]
+
+	func _init(node : Node2D):
+		self.node_ref = node
+		self.states = [State.new(node)]
+		self.popped_states = []
+
+static func track(node : Node2D) -> Record:
 	var record = Record.new(node)
 
 	_history.append(record)
@@ -32,26 +47,26 @@ static func start():
 	rewinding = true
 
 	for record in _history:
-		record.popped_positions = []
+		record.popped_states = []
 
 static func stop():
 	rewinding = false
 	_time_to_update = UPDATE_INTERVAL
 	_time_to_rewind = REWIND_INTERVAL
 
-func _update_history(delta: float):
+func _update_history(delta : float):
 	if _time_to_update > 0:
 		_time_to_update -= delta
 		return
 
 	for record in _history:
-		record.positions.append(record.node_ref.position)
-		if len(record.positions) > _MAX_HISTORY_SIZE:
-			record.positions.pop_front()
+		record.states.append(State.new(record.node_ref))
+		if len(record.states) > _MAX_HISTORY_SIZE:
+			record.states.pop_front()
 
 	_time_to_update = UPDATE_INTERVAL
 
-func _rewind(delta: float):
+func _rewind(delta : float):
 	if _time_to_rewind > 0:
 		_time_to_rewind -= delta
 		return
@@ -59,12 +74,17 @@ func _rewind(delta: float):
 	_time_to_rewind = REWIND_INTERVAL
 	
 	for record in _history:
-		if record.positions.is_empty(): continue
+		if record.states.is_empty(): continue
 		
-		record.node_ref.position = record.positions.pop_back()
-		record.popped_positions.push_front(record.node_ref.position)
+		var state = record.states.pop_back()
 
-func _process(delta: float):
+		if state.action and state.action in record.node_ref:
+			record.node_ref.call(state.action)
+
+		record.node_ref.transform = state.transform
+		record.popped_states.push_front(state)
+
+func _process(delta : float):
 	if rewinding: return _rewind(delta)
 
 	_update_history(delta)

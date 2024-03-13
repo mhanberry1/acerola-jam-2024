@@ -7,7 +7,10 @@ extends CharacterBody2D
 
 @onready var _animated_sprite = $AnimatedSprite2D
 
+var action = ""
+var animation = ""
 var _duplicate = preload('res://components/duplicate.tscn')
+var _bullet = preload('res://components/bullet.tscn')
 var _history_record : Rewinder.Record
 var _jump_duration := 0.0
 
@@ -34,37 +37,46 @@ func _handle_rewind():
 		Rewinder.stop()
 		$/root/Main.add_child(
 			_duplicate.instantiate().setup(
-				_history_record.popped_positions.duplicate()
+				_history_record.popped_states.duplicate()
 			)
 		)
 
 func _handle_shoot():
 	if Input.is_action_just_pressed("shoot"):
-		var bullet : StaticBody2D = $bullet.duplicate()
+		var new_bullet : StaticBody2D = _bullet.instantiate()
 
-		if _animated_sprite.flip_h: bullet.flip()
+		if _animated_sprite.flip_h: new_bullet.flip()
 		
-		add_child(bullet)
-		bullet.show()
-		bullet.shoot()
+		action = "shoot"
+		$/root/Main.add_child(new_bullet)
+		new_bullet.show()
+		new_bullet.position = $bulletspawn.global_position
 
 func _play_animations():
 	if not is_on_floor():
-		_animated_sprite.play("jump")
+		animation = "jump"
 	elif Input.is_action_pressed("right"):
+		animation = "walk"
+		action = "right"
+
 		if _animated_sprite.flip_h:
 			_animated_sprite.position.x *= -1
+			$bulletspawn.position.x *= -1
+			_animated_sprite.flip_h = false
 
-		_animated_sprite.flip_h = false
-		_animated_sprite.play("walk")
 	elif Input.is_action_pressed("left"):
+		animation = "walk"
+		action = "left"
+
 		if not _animated_sprite.flip_h:
 			_animated_sprite.position.x *= -1
+			$bulletspawn.position.x *= -1
+			_animated_sprite.flip_h = true
 
-		_animated_sprite.flip_h = true
-		_animated_sprite.play("walk")
 	else:
-		_animated_sprite.play("stand")
+		animation = "stand"
+	
+	_animated_sprite.play(animation)
 
 func _ready():
 	_history_record = Rewinder.track(self)

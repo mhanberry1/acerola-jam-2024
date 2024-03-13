@@ -1,21 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3hmgc7uslkqq"]
+[gd_scene load_steps=6 format=3 uid="uid://d3hmgc7uslkqq"]
 
 [ext_resource type="PackedScene" uid="uid://lg0acywvsql2" path="res://components/player.tscn" id="1_vi0c5"]
 [ext_resource type="TileSet" uid="uid://bnnsk080g33ly" path="res://resources/cave.tres" id="3_34lmj"]
 [ext_resource type="Script" path="res://scripts/rewinder.gd" id="3_hmyin"]
 [ext_resource type="Texture2D" uid="uid://bfvcdn7iein41" path="res://sprites/environment/backgrounds/cave1.png" id="4_s7b1c"]
+[ext_resource type="PackedScene" uid="uid://bnnfbm6m7332w" path="res://components/spikey.tscn" id="5_jdqsk"]
 
 [node name="Main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_vi0c5")]
 position = Vector2(102, 38)
 speed = 100
-gravity = 1000
 jump_force = 200
-max_jump_duration = 0.1
 
-[node name="Rewinder" type="Node" parent="."]
-script = ExtResource("3_hmyin")
+[node name="Spikey" parent="." instance=ExtResource("5_jdqsk")]
+position = Vector2(216, 56)
+starting_direction = null
+
+[node name="Spikey2" parent="." instance=ExtResource("5_jdqsk")]
+position = Vector2(544, 104)
+starting_direction = 1
+
+[node name="Spikey3" parent="." instance=ExtResource("5_jdqsk")]
+position = Vector2(720, -8)
+starting_direction = 1
 
 [node name="Environment" type="Node" parent="."]
 
@@ -31,3 +39,6 @@ texture_filter = 1
 position = Vector2(323, 7)
 scale = Vector2(2.81875, 2.5)
 texture = ExtResource("4_s7b1c")
+
+[node name="Rewinder" type="Node" parent="."]
+script = ExtResource("3_hmyin")

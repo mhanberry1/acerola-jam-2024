@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnnfbm6m7332w"]
+[gd_scene load_steps=7 format=3 uid="uid://bnnfbm6m7332w"]
 
 [ext_resource type="Texture2D" uid="uid://bbft8yjp15qro" path="res://sprites/enemies/spikey.png" id="1_b21gd"]
+[ext_resource type="Script" path="res://scripts/spikey.gd" id="1_gom31"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6a6x4"]
-size = Vector2(20, 12)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ja4sa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0grv"]
 atlas = ExtResource("1_b21gd")
@@ -27,13 +27,19 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Spikey" type="StaticBody2D"]
+[node name="Spikey" type="CharacterBody2D"]
+floor_constant_speed = true
+script = ExtResource("1_gom31")
+speed = null
+rotation_speed = null
+starting_direction = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_6a6x4")
+shape = SubResource("CircleShape2D_ja4sa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1, 1.4)
 sprite_frames = SubResource("SpriteFrames_db1mp")
 autoplay = "default"
 frame_progress = 0.0195144
