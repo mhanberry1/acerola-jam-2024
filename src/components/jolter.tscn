@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://clvmee7fxifmg"]
+
+[ext_resource type="Texture2D" uid="uid://chr0uob0k8gj4" path="res://sprites/enemies/jolter.png" id="1_3ofoi"]
+[ext_resource type="Script" path="res://scripts/jolter.gd" id="1_v7sp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icdv1"]
+size = Vector2(23, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mqcx"]
+atlas = ExtResource("1_3ofoi")
+region = Rect2(0, 0, 30, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqiqk"]
+atlas = ExtResource("1_3ofoi")
+region = Rect2(30, 0, 30, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_exdm8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mqcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqiqk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Jolter" type="CharacterBody2D"]
+script = ExtResource("1_v7sp3")
+speed = null
+starting_direction = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_icdv1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_exdm8")
+frame_progress = 0.166498

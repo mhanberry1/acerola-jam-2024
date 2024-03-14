@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmac2bhbq0afu"]
+
+[ext_resource type="Script" path="res://scripts/deathplane.gd" id="1_002pf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2shxl"]
+
+[node name="Deathplane" type="Area2D"]
+script = ExtResource("1_002pf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2shxl")
