@@ -54,6 +54,9 @@ static func stop():
 	_time_to_update = UPDATE_INTERVAL
 	_time_to_rewind = REWIND_INTERVAL
 
+static func reset():
+	_history = []
+
 func _update_history(delta : float):
 	if _time_to_update > 0:
 		_time_to_update -= delta

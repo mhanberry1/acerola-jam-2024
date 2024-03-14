@@ -11,10 +11,16 @@ var animation = ""
 var _death_handler : DeathHandler
 var _original_modulate : Color
 var _original_scale : Vector2
+var _cooldown := 0.0
 
 func hit():
 	action = 'reset'
 	_death_handler = DeathHandler.new(self)
+
+func damage():
+	if get_tree():
+		Rewinder.reset()
+		get_tree().reload_current_scene()
 
 func reset():
 	print('reset')
@@ -39,8 +45,12 @@ func _process(delta):
 	if not is_on_floor(): velocity.y = 100
 
 	if is_on_wall():
-		speed *= -1
-		$AnimatedSprite2D.flip_h = not $AnimatedSprite2D.flip_h
+		_cooldown -= delta
+
+		if _cooldown <= 0:
+			speed *= -1
+			$AnimatedSprite2D.flip_h = not $AnimatedSprite2D.flip_h
+			_cooldown = 0.5
 
 	var target_angle = get_floor_normal().angle() + PI / 2
 	

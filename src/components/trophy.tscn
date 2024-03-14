@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://mmlpugat63s7"]
+
+[ext_resource type="Script" path="res://scripts/trophy.gd" id="1_k1kli"]
+[ext_resource type="Texture2D" uid="uid://cxsskhcknogt7" path="res://sprites/trophy.png" id="1_y1s83"]
+[ext_resource type="FontFile" uid="uid://ukiles7isg3c" path="res://resources/Yellowtail-Regular.ttf" id="3_717bh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8ewu"]
+
+[node name="trophy" type="Area2D" node_paths=PackedStringArray("win_text")]
+script = ExtResource("1_k1kli")
+win_text = NodePath("RichTextLabel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g8ewu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_y1s83")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -90.0
+offset_right = 294.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.255, 0.255)
+theme_override_fonts/normal_font = ExtResource("3_717bh")
+theme_override_font_sizes/normal_font_size = 90
+text = "You Win!"
+fit_content = true

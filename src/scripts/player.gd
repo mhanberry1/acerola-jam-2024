@@ -78,6 +78,14 @@ func _play_animations():
 	
 	_animated_sprite.play(animation)
 
+func _handle_collisions():
+	move_and_slide()
+
+	for i in get_slide_collision_count():
+		var body = get_slide_collision(i).get_collider()
+
+		if 'damage' in body: body.damage()
+
 func _ready():
 	_history_record = Rewinder.track(self)
 
@@ -90,5 +98,4 @@ func _physics_process(delta: float):
 	_handle_movement(delta)
 	_handle_shoot()
 	_play_animations()
-
-	move_and_slide()
+	_handle_collisions()
